@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transliterasi Bahasa ke Bahasa Kawi</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f5f5f5;
+        height: 100vh;
+      }
+      .container {
+        height: auto;
+        max-width: 500px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+      }
+      h2 {
+        text-align: center;
+        color: #333;
+      }
+      textarea {
+        margin-top: 20px;
+        font-family: Arial, Helvetica, sans-serif;
+
+        height: 100px;
+        margin-bottom: 10px;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      button {
+        margin: 0 auto;
+
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+      #hasil {
+        font-family: Arial, Helvetica, sans-serif;
+        margin-top: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        font-size: 20px;
+        height: 40px;
+      }
+      .rubah {
+        text-align: center;
+        margin-bottom: 20px;
+        width: 50%;
+        margin: 0 auto;
+      }
+      .rubah a:hover {
+        background-color: #007bff;
+      }
+      .rubah a {
+        border-radius: 9px;
+        background-color: #0056b3;
+        padding: 10px 10px;
+        cursor: pointer;
+        text-align: center;
+        color: white;
+        text-decoration: none;
+        font-size: 13px;
+      }
+      @media (max-width: 440px) {
+        textarea {
+          font-size: 14px;
+        }
+        button {
+          padding: 6px 7px;
+          font-size: 13px;
+
+          background-color: #4caf50;
+        }
+        #hasil {
+          height: 40px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="rubah" style="display: none">
+        <a href="index.html">Translasi ke Bahasa Dewanagari</a>
+      </div>
+      <h2>Transliterasi Bahasa ke Bahasa Kawi</h2>
+      <textarea
+        id="teksMasukan"
+        placeholder="Masukkan teks bahasa yang ingin diubah"
+      ></textarea>
+      <button onclick="transliterasi()">Transliterasi</button>
+      <div style="display: block" id="hasil"></div>
+      <button id="salinButton" onclick="salinHasil()">Salin Hasil</button>
+    </div>
+
+    <script>
+      function transliterasi() {
+        var teksMasukan = document.getElementById("teksMasukan").value;
+        var teksKawi = transliterasiKeKawi(teksMasukan);
+        document.getElementById("hasil").innerText = teksKawi;
+      }
+
+      function transliterasiKeKawi(teks) {
+        var kawi = teks
+          .replace(/a/g, "ꦄ")
+          .replace(/b/g, "ꦧ")
+          .replace(/c/g, "ꦕ")
+          .replace(/d/g, "ꦢ")
+          .replace(/e/g, "ꦌ")
+          .replace(/f/g, "ꦑ")
+          .replace(/g/g, "ꦒ")
+          .replace(/h/g, "ꦲ")
+          .replace(/i/g, "ꦆ")
+          .replace(/j/g, "ꦙ")
+          .replace(/k/g, "ꦏ")
+          .replace(/l/g, "ꦭ")
+          .replace(/m/g, "ꦩ")
+          .replace(/n/g, "ꦤ")
+          .replace(/o/g, "ꦎ")
+          .replace(/p/g, "ꦥ")
+          .replace(/q/g, "ꦾ")
+          .replace(/r/g, "ꦂ")
+          .replace(/s/g, "ꦱ")
+          .replace(/t/g, "ꦠ")
+          .replace(/u/g, "ꦈ")
+          .replace(/v/g, "ꦮ")
+          .replace(/w/g, "ꦮ")
+          .replace(/x/g, "ꦼ")
+          .replace(/y/g, "ꦪ")
+          .replace(/z/g, "ꦗ");
+        return kawi;
+      }
+
+      function salinHasil() {
+        var hasil = document.getElementById("hasil");
+        var range = document.createRange();
+        range.selectNode(hasil);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+        document.execCommand("copy");
+        window.getSelection().removeAllRanges();
+        document.getElementById("salinButton").innerText = "Teks Disalin!";
+        setTimeout(function () {
+          document.getElementById("salinButton").innerText = "Salin Hasil";
+        }, 3000);
+      }
+    </script>
+  </body>
+</html>
