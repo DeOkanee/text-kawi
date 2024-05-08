@@ -82,6 +82,23 @@
         text-decoration: none;
         font-size: 13px;
       }
+      #copyright {
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        position: fixed;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        font-size: 14px;
+        color: #000000;
+        cursor: pointer;
+        text-decoration: underline;
+        text-decoration: none;
+      }
+
+      #copyright:hover {
+        color: #007bff;
+      }
       @media (max-width: 440px) {
         textarea {
           font-size: 14px;
@@ -111,7 +128,10 @@
       <button onclick="transliterasi()">Transliterasi</button>
       <div style="display: block" id="hasil"></div>
       <button id="salinButton" onclick="salinHasil()">Salin Hasil</button>
+      
     </div>
+     <!-- Copyright section -->
+     <p id="copyright" onclick="openLink()">© DeOka 2024</p>
 
     <script>
       function transliterasi() {
@@ -163,6 +183,9 @@
         setTimeout(function () {
           document.getElementById("salinButton").innerText = "Salin Hasil";
         }, 3000);
+      }
+      function openLink() {
+        window.open("https://s.id/MDOka", "_blank");
       }
     </script>
   </body>
